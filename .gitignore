@@ -31,3 +31,6 @@ bin/
 # IntelliJ workspace state (local machine paths and UI state)
 .idea/workspace.xml
 
+# IntelliJ project files
+.idea/
+*.iml

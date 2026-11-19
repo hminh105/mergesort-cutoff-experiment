@@ -82,8 +82,8 @@ Mỗi kịch bản được làm nóng JVM (warm-up), xáo trộn ngẫu nhiên 
 | **Reverse Sorted** | 561.041 ms | 610.690 ms (-8.85%) | 573.753 ms (-2.27%) | **C = 8** (523.979 ms) | **+6.61%** |
 
 ### Kết luận chính
-* **Không có một giá trị `CUTOFF` duy nhất tối ưu cho mọi phân phối dữ liệu.**
-* **Vùng mặc định cân bằng (`CUTOFF = 8 – 10`):** Phù hợp cho dữ liệu tổng quát và gần với mốc `10` trong giáo trình mới. Tại `C = 8`, mức tăng tốc median trung bình trên 9 kịch bản là **+11.69%** (xấu nhất `-1.01%`); tại `C = 10` là **+11.46%** (xấu nhất `-2.27%`). `C = 15` có một kịch bản giảm `-14.82%`, nên không gộp vào nhóm mặc định an toàn.
-* **Chọn theo phân phối đã biết:** Với dữ liệu ngẫu nhiên tại `N = 1.000.000`, `C = 30` có median thấp nhất; với dữ liệu gần sắp xếp, `C = 50` thấp nhất; với dữ liệu giảm dần, `C = 8` thấp nhất trong các mức thử. `C = 25` là một lựa chọn cân bằng trên 9 kịch bản (speedup median trung bình `+14.49%`, xấu nhất `-2.69%`). Các mức lớn có thể làm chậm dữ liệu giảm dần (tới `-38.27%` ở `C = 64`).
+* **Lựa chọn chính: `CUTOFF = 25`.** Theo tiêu chí cân bằng speedup median trung bình và mức suy giảm xấu nhất trên 9 kịch bản, `C = 25` đạt trung bình **+14.49%**, trường hợp xấu nhất **-2.69%**. Đây là lựa chọn phù hợp nhất trong các mức đã thử cho bộ dữ liệu này, không phải giá trị tối ưu phổ quát.
+* **Lựa chọn thận trọng: `CUTOFF = 8`.** Nếu ưu tiên giảm rủi ro chậm hơn baseline, `C = 8` có trường hợp xấu nhất **-1.01%** và speedup trung bình **+11.69%**; `C = 10` lần lượt là **-2.27%** và **+11.46%**.
+* **Cutoff tốt nhất thay đổi theo dữ liệu và kích thước.** Tại `N = 1.000.000`, median thấp nhất lần lượt là `C = 30` cho Random, `C = 50` cho Nearly Sorted và `C = 8` cho Reverse. Không nên coi `C = 15–30` là vùng an toàn chung: `C = 30` có trường hợp **-51.80%** trên Nearly Sorted, `N = 500.000`; `C = 64` giảm **-38.27%** trên Reverse, `N = 1.000.000`.
 
 CSV lưu thống kê tổng hợp; từng thời gian của 9 lượt đo chưa được ghi thành dòng riêng. Xem báo cáo PDF trong thư mục **`report/`**.
