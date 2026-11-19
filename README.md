@@ -87,18 +87,3 @@ Mỗi kịch bản được làm nóng JVM (warm-up), xáo trộn ngẫu nhiên 
 * **Chọn theo phân phối đã biết:** Với dữ liệu ngẫu nhiên tại `N = 1.000.000`, `C = 30` có median thấp nhất; với dữ liệu gần sắp xếp, `C = 50` thấp nhất; với dữ liệu giảm dần, `C = 8` thấp nhất trong các mức thử. `C = 25` là một lựa chọn cân bằng trên 9 kịch bản (speedup median trung bình `+14.49%`, xấu nhất `-2.69%`). Các mức lớn có thể làm chậm dữ liệu giảm dần (tới `-38.27%` ở `C = 64`).
 
 CSV lưu thống kê tổng hợp; từng thời gian của 9 lượt đo chưa được ghi thành dòng riêng. Xem báo cáo PDF trong thư mục **`report/`**.
-## 6. Đưa dự án lên GitHub
-
-Repository cục bộ đã được khởi tạo. Tại thư mục gốc, commit các tệp cần nộp rồi kết nối repository GitHub. Thay `<URL_REPOSITORY>` bằng URL repository của bạn:
-
-```bash
-git add .
-git commit -m "Hoan thanh thi nghiem Mergesort CUTOFF"
-git branch -M main
-git remote add origin <URL_REPOSITORY>
-git push -u origin main
-```
-
-Trước khi push, kiểm tra `git status` và chắc chắn không đưa lên các tệp workspace riêng của IntelliJ.
-
-
